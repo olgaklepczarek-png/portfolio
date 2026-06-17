@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt — Olga Klepczarek</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ANTI-FLASH SCRIPT: runs before the page paints -->
+  <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark-mode");
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- =====================================================
+     COOKIE CONSENT BANNER
+     Paste this block at the top of <body> on every page.
+     JS and CSS handle all behaviour — nothing else to change here.
+====================================================== -->
+<div class="cookie-banner" id="cookieBanner">
+
+  <!-- ── INITIAL STATE ── -->
+  <div class="cookie-initial" id="cookieInitial">
+    <p class="cookie-text">
+      Ta strona używa wyłącznie ciasteczek niezbędnych do działania jej funkcji.
+      Możesz je odrzucić, ale wtedy niektóre funkcje nie będą dostępne.
+      <a href="polityka-prywatnosci.html" class="cookie-link">Dowiedz się więcej.</a>
+    </p>
+    <div class="cookie-btn-row">
+      <button class="cookie-btn" id="cookieAccept">akceptuję</button>
+      <button class="cookie-btn" id="cookieDecline">odrzucam</button>
+    </div>
+  </div>
+
+  <!-- ── DECLINED STATE ── -->
+  <!-- Hidden by default, shown after "odrzucam" is clicked -->
+  <div class="cookie-declined" id="cookieDeclined" style="display:none;">
+    <button class="cookie-close" id="cookieClose">x</button>
+    <p class="cookie-text">Niektóre funkcje strony są niedostępne.</p>
+    <button class="cookie-btn cookie-btn--full" id="cookieReopen">
+      &#60; Zmień ustawienia cookies
+    </button>
+  </div>
+
+</div>
+
+  <div class="top-overlay"></div>
+
+  <!-- THEME SWITCH -->
+  <div class="top-bar">
+    <div class="theme-switcher">
+      <img
+        id="lightModeBtn"
+        class="theme-icon"
+        src="icons/light/sun.png"
+        data-light="icons/light/sun.png"
+        data-dark="icons/dark/sun.png">
+      <img
+        id="darkModeBtn"
+        class="theme-icon"
+        src="icons/light/moon.png"
+        data-light="icons/light/moon.png"
+        data-dark="icons/dark/moon.png">
+    </div>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <a href="index.html" class="page-home-link">home page</a>
+    <h1 class="page-title">kontakt</h1>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="kontakt-main">
+
+    <!-- ===== SOCIAL ICONS ===== -->
+    <div class="kontakt-icons">
+
+      <div class="kontakt-icon-item">
+        <a href="https://www.instagram.com/olga.klepczarek/" target="_blank" rel="noopener">
+          <img
+            src="icons/light/instagram.png"
+            data-light="icons/light/instagram.png"
+            data-dark="icons/dark/instagram.png"
+            data-hover-light="icons/white/instagram.png"
+            data-hover-dark="icons/light/instagram.png"
+            class="kontakt-icon desktop-icon">
+          <p>instagram</p>
+        </a>
+      </div>
+
+      <div class="kontakt-icon-item">
+        <a href="mailto:olga.klepczarek@gmail.com">
+          <img
+            src="icons/light/email.png"
+            data-light="icons/light/email.png"
+            data-dark="icons/dark/email.png"
+            data-hover-light="icons/white/email.png"
+            data-hover-dark="icons/light/email.png"
+            class="kontakt-icon desktop-icon">
+          <p>email</p>
+        </a>
+      </div>
+
+      <div class="kontakt-icon-item">
+        <a href="https://vimeo.com/klepczarekolga" target="_blank" rel="noopener">
+          <img
+            src="icons/light/vimeo.png"
+            data-light="icons/light/vimeo.png"
+            data-dark="icons/dark/vimeo.png"
+            data-hover-light="icons/white/vimeo.png"
+            data-hover-dark="icons/light/vimeo.png"
+            class="kontakt-icon desktop-icon">
+          <p>vimeo</p>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- ===== CONTACT FORM ===== -->
+    <!--
+      When you've chosen your hosting/form service, add the
+      action attribute to the <form> tag, for example:
+        action="https://formspree.io/f/YOUR_ID" method="POST"
+      Everything else stays the same.
+    -->
+<h2 class="kontakt-form-title">Napisz do mnie:</h2>
+
+    <div class="kontakt-form-wrapper">
+  <form
+  class="kontakt-form"
+  action="https://api.web3forms.com/submit"
+  method="POST">
+
+    <input
+    type="hidden"
+    name="access_key"
+    value="c284ce9b-8673-436c-b3ae-b97e33c2f2d9">
+
+    <input
+     type="hidden"
+     name="subject"
+     value="Nowa wiadomość ze strony portfolio">
+
+     <input
+     type="checkbox"
+     name="botcheck"
+     class="hidden"
+     style="display: none;">
+
+
+    <div class="kontakt-form-row">
+      <div class="kontakt-input-wrap">
+        <input
+          type="email"
+          name="email"
+          placeholder="Twój email"
+          required
+          class="kontakt-input">
+      </div>
+      <div class="kontakt-input-wrap">
+        <input
+        
+          type="text"
+          name="name"
+          placeholder="Jak się nazywasz?"
+          required
+          class="kontakt-input">
+      </div>
+    </div>
+
+    <div class="kontakt-input-wrap">
+      <textarea
+        name="message"
+        placeholder="O czym chcesz porozmawiać?"
+        required
+        class="kontakt-textarea"></textarea>
+    </div>
+
+    <div class="kontakt-form-bottom">
+
+      <!-- Left side: blinking ">" + checkbox label wrapped together so
+           space-between treats them as one unit and the checkbox never moves.
+           The ">" is display:none by default — JS switches it to inline
+           only after a failed submit attempt. -->
+      <div class="kontakt-checkbox-group">
+        <span class="kontakt-checkbox-prompt" id="checkboxPrompt">&gt;</span>
+        <label class="kontakt-checkbox-label">
+          <input type="checkbox" name="privacy" value="accepted" required class="kontakt-checkbox">
+          <span class="kontakt-checkbox-custom"></span>
+          <span>zapoznał_m się z polityką prywatności</span>
+        </label>
+      </div>
+
+      <button type="submit" class="kontakt-submit">wyślij</button>
+
+    </div>
+
+  </form>
+</div>
+
+
+  <!-- =====================================================
+       PRIVACY ALERT POPUP
+       Shown when the user clicks "wyślij" without ticking
+       the privacy checkbox. Dismissed by: X button, OK
+       button, clicking the overlay, or ticking the checkbox.
+
+       The blinking ">" prompt sits beside the popup (outside
+       the window itself) and uses the same promptBlink
+       animation as the one on the o mnie page.
+  ====================================================== -->
+  <div class="privacy-alert" id="privacyAlert">
+
+    <!-- Dim overlay — clicking it closes the popup -->
+    <div class="privacy-alert-overlay" id="privacyAlertOverlay"></div>
+
+    <!-- The popup window -->
+    <div class="privacy-alert-window">
+
+      <!-- Title bar with X close button -->
+      <div class="privacy-alert-titlebar">
+        <span class="privacy-alert-title">info</span>
+        <button class="privacy-alert-close" id="privacyAlertClose">x</button>
+      </div>
+
+      <!-- Message body -->
+      <div class="privacy-alert-body">
+        <p class="privacy-alert-text">
+          Żeby wysłać wiadomość za pomocą formularza, zaakceptuj
+          <a href="polityka-prywatnosci.html" class="cookie-link">politykę prywatności</a>.
+        </p>
+
+        <!-- OK button — also closes the popup -->
+        <div class="privacy-alert-btn-row">
+          <button class="privacy-alert-ok" id="privacyAlertOk">OK</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <span>olga.klepczarek@gmail.com</span>
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>

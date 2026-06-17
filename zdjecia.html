@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zdjęcia — Olga Klepczarek</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ANTI-FLASH SCRIPT: runs before the page paints -->
+  <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark-mode");
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- =====================================================
+     COOKIE CONSENT BANNER
+     Paste this block at the top of <body> on every page.
+     JS and CSS handle all behaviour — nothing else to change here.
+====================================================== -->
+<div class="cookie-banner" id="cookieBanner">
+
+  <!-- ── INITIAL STATE ── -->
+  <div class="cookie-initial" id="cookieInitial">
+    <p class="cookie-text">
+      Ta strona używa wyłącznie ciasteczek niezbędnych do działania jej funkcji.
+      Możesz je odrzucić, ale wtedy niektóre funkcje nie będą dostępne.
+      <a href="polityka-prywatnosci.html" class="cookie-link">Dowiedz się więcej.</a>
+    </p>
+    <div class="cookie-btn-row">
+      <button class="cookie-btn" id="cookieAccept">akceptuję</button>
+      <button class="cookie-btn" id="cookieDecline">odrzucam</button>
+    </div>
+  </div>
+
+  <!-- ── DECLINED STATE ── -->
+  <!-- Hidden by default, shown after "odrzucam" is clicked -->
+  <div class="cookie-declined" id="cookieDeclined" style="display:none;">
+    <button class="cookie-close" id="cookieClose">x</button>
+    <p class="cookie-text">Niektóre funkcje strony są niedostępne.</p>
+    <button class="cookie-btn cookie-btn--full" id="cookieReopen">
+      &#60; Zmień ustawienia cookies
+    </button>
+  </div>
+
+</div>
+
+  <div class="top-overlay"></div>
+
+  <!-- THEME SWITCH -->
+  <div class="top-bar">
+    <div class="theme-switcher">
+      <img
+        id="lightModeBtn"
+        class="theme-icon"
+        src="icons/light/sun.png"
+        data-light="icons/light/sun.png"
+        data-dark="icons/dark/sun.png">
+      <img
+        id="darkModeBtn"
+        class="theme-icon"
+        src="icons/light/moon.png"
+        data-light="icons/light/moon.png"
+        data-dark="icons/dark/moon.png">
+    </div>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <a href="index.html" class="page-home-link">home page</a>
+    <h1 class="page-title">zdjęcia</h1>
+  </div>
+
+  <!--
+    =====================================================
+    PHOTO LAYOUT
+
+    HOW THIS WORKS:
+    .photo-canvas is a fixed-size container (1440 × 4617.1px)
+    matching your Figma frame exactly. It's centred on the
+    page — on wide screens there's whitespace on both sides,
+    on narrow screens it clips (mobile has its own layout).
+
+    Each photo is positioned absolutely using the X and Y
+    coordinates from Figma. To move a photo, just change
+    the style values on that <img> tag.
+
+    TO ADD A NEW PHOTO:
+    Copy any <img> block below and adjust the five values:
+      left   = x from Figma
+      top    = y from Figma (minus 249.9 from your Figma value)
+      width  = w from Figma
+      height = h from Figma
+      src    = your filename in the photos/ folder
+
+    Don't forget to update the canvas height in style.css
+    if your new photo extends below the current bottom.
+    =====================================================
+  -->
+
+  <div class="photo-canvas">
+
+    <!-- Photo 1: 000400320023.webp -->
+    <img
+      class="photo"
+      src="photos/000400320023.webp"
+      alt=""
+      loading="eager"
+      style="left: 83.24px; top: 182.21px; width: 663.8px; height: 440.1px;">
+
+    <!-- Photo 2: 000400320021.webp -->
+    <img
+      class="photo"
+      src="photos/000400320021.webp"
+      alt=""
+      loading="eager"
+      style="left: 783.34px; top: 0px; width: 549.65px; height: 364.42px;">
+
+    <!-- Photo 3: 000400330008.webp -->
+    <img
+      class="photo"
+      src="photos/000400330008.webp"
+      alt=""
+      loading="lazy"
+      style="left: 783.34px; top: 406.86px; width: 549.65px; height: 364.42px;">
+
+    <!-- Photo 4: 000400330038.webp -->
+    <img
+      class="photo"
+      src="photos/000400330038.webp"
+      alt=""
+      loading="lazy"
+      style="left: 61.67px; top: 922.09px; width: 426.19px; height: 642.81px;">
+
+    <!-- Photo 5: 000358470024.webp -->
+    <img
+      class="photo"
+      src="photos/000358470024.webp"
+      alt=""
+      loading="lazy"
+      style="left: 574.82px; top: 922.1px; width: 803.61px; height: 642.81px;">
+
+    <!-- Photo 6: 000347610028.webp -->
+    <img
+      class="photo"
+      src="photos/000347610028.webp"
+      alt=""
+      loading="lazy"
+      style="left: 129.82px; top: 1692.24px; width: 1192.09px; height: 770.88px;">
+
+    <!-- Photo 7: DSC01618.webp -->
+    <img
+      class="photo"
+      src="photos/DSC01618.webp"
+      alt=""
+      loading="lazy"
+      style="left: 523.79px; top: 2602.45px; width: 798.12px; height: 531.94px;">
+
+    <!-- Photo 8: 000347610027.webp -->
+    <img
+      class="photo"
+      src="photos/000347610027.webp"
+      alt=""
+      loading="lazy"
+      style="left: 523.79px; top: 3201.39px; width: 798.12px; height: 528.75px;">
+
+    <!-- Photo 9: DSC01932.webp -->
+    <img
+      class="photo"
+      src="photos/DSC01932.webp"
+      alt=""
+      loading="lazy"
+      style="left: 523.79px; top: 3797.15px; width: 798.12px; height: 531.94px;">
+
+  </div>
+
+  <footer class="site-footer">
+     <span>olga.klepczarek@gmail.com</span>
+  </footer>
+
+  <!-- ===== PHOTO LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-overlay" id="lightboxOverlay"></div>
+
+
+  <!-- The actual window -->
+  <div class="lightbox-window">
+
+    <!-- Title bar -->
+    <div class="lightbox-titlebar">
+      <span class="lightbox-filename" id="lightboxFilename">img</span>
+     <button class="lightbox-close" id="lightboxClose">
+  <img
+    src="ui/ui-elements/light-mode/close.png"
+    data-light="ui/ui-elements/light-mode/close.png"
+    data-dark="ui/ui-elements/dark-mode/close.png"
+    data-hover-light="ui/ui-elements/light-mode-inverted/close.png"
+    data-hover-dark="ui/ui-elements/dark-mode-inverted/close.png"
+    class="lightbox-close-icon"
+    id="lightboxCloseIcon">
+</button>
+    </div>
+
+    <!-- Photo -->
+    <div class="lightbox-photo-wrap">
+      <img class="lightbox-photo" id="lightboxPhoto" src="" alt="">
+    </div>
+
+  </div>
+</div>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>

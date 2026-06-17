@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dziękuję — Olga Klepczarek</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ANTI-FLASH SCRIPT: runs before the page paints -->
+  <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark-mode");
+    }
+  </script>
+</head>
+
+<body>
+
+    <div class="top-overlay"></div>
+    
+    <!-- THEME SWITCH -->
+    <div class="top-bar">
+        <div class="theme-switcher">
+        <img
+            id="lightModeBtn"
+            class="theme-icon"
+            src="icons/light/sun.png"
+            data-light="icons/light/sun.png"
+            data-dark="icons/dark/sun.png">
+        <img
+            id="darkModeBtn"
+            class="theme-icon"
+            src="icons/light/moon.png"
+            data-light="icons/light/moon.png"
+            data-dark="icons/dark/moon.png">
+        </div>
+    </div>
+    
+      <div class="dziekuje-item">
+          <img
+            src="icons/light/heart.png"
+            data-light="icons/light/heart.png"
+            data-dark="icons/dark/heart.png"
+            class="desktop-icon">
+        </a>
+      </div>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <a href="index.html" class="page-home-link">home page</a>
+    </div>
+    
+    <!-- MAIN CONTENT -->
+    <main class="kontakt-main">
+    
+
+<div class="dziękuję-message">
+  <h3>Dziękuję za wiadomość!</h3>
+  <p>Skontaktuję się z Tobą tak szybko, jak to możliwe.</p>
+
+  <a href="index.html" class="dziękuję-home-btn">
+  Wróć na stronę główną
+</a>
+</div>  
+
+      </main>
+
+  <footer class="site-footer">
+    <span>olga.klepczarek@gmail.com</span>
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>
+

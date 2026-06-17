@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Branding — Olga Klepczarek</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ANTI-FLASH SCRIPT: runs before the page paints -->
+  <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark-mode");
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- =====================================================
+     COOKIE CONSENT BANNER
+     Paste this block at the top of <body> on every page.
+     JS and CSS handle all behaviour — nothing else to change here.
+====================================================== -->
+<div class="cookie-banner" id="cookieBanner">
+
+  <!-- ── INITIAL STATE ── -->
+  <div class="cookie-initial" id="cookieInitial">
+    <p class="cookie-text">
+      Ta strona używa wyłącznie ciasteczek niezbędnych do działania jej funkcji.
+      Możesz je odrzucić, ale wtedy niektóre funkcje nie będą dostępne.
+      <a href="polityka-prywatnosci.html" class="cookie-link">Dowiedz się więcej.</a>
+    </p>
+    <div class="cookie-btn-row">
+      <button class="cookie-btn" id="cookieAccept">akceptuję</button>
+      <button class="cookie-btn" id="cookieDecline">odrzucam</button>
+    </div>
+  </div>
+
+  <!-- ── DECLINED STATE ── -->
+  <!-- Hidden by default, shown after "odrzucam" is clicked -->
+  <div class="cookie-declined" id="cookieDeclined" style="display:none;">
+    <button class="cookie-close" id="cookieClose">x</button>
+    <p class="cookie-text">Niektóre funkcje strony są niedostępne.</p>
+    <button class="cookie-btn cookie-btn--full" id="cookieReopen">
+      &#60; Zmień ustawienia cookies
+    </button>
+  </div>
+
+</div>
+
+  <div class="top-overlay"></div>
+
+  <!-- THEME SWITCH -->
+  <div class="top-bar">
+    <div class="theme-switcher">
+      <img
+        id="lightModeBtn"
+        class="theme-icon"
+        src="icons/light/sun.png"
+        data-light="icons/light/sun.png"
+        data-dark="icons/dark/sun.png">
+      <img
+        id="darkModeBtn"
+        class="theme-icon"
+        src="icons/light/moon.png"
+        data-light="icons/light/moon.png"
+        data-dark="icons/dark/moon.png">
+    </div>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <a href="index.html" class="page-home-link">home page</a>
+    <h1 class="page-title">branding</h1>
+  </div>
+
+  <!-- =====================================================
+       BRANDING FOLDER LIST
+
+       HOW TO ADD A NEW PROJECT:
+       1. Copy one <li> block and paste it at the end of
+          the <ul class="branding-list">
+       2. Set data-project to a unique ID (no spaces)
+       3. Set data-title to the lightbox title bar text
+       4. Add a matching .branding-project-content block
+          at the bottom of this file
+  ====================================================== -->
+
+  <main class="branding-main">
+    <ul class="branding-list">
+
+      <!-- PROJECT 1 -->
+      <li class="branding-item"
+          data-project="mateusz-niewiarowski"
+          data-title="Mateusz_Niewiarowski_lekcje_gitary">
+        <img
+          class="branding-folder"
+          src="ui/ui-elements/light-mode/folder-open.png"
+          data-light="ui/ui-elements/light-mode/folder-open.png"
+          data-dark="ui/ui-elements/dark-mode/folder-open.png"
+          data-hover-light="ui/ui-elements/light-mode-inverted/folder-open.png"
+          data-hover-dark="ui/ui-elements/dark-mode-inverted/folder-open.png"
+          alt="">
+        <span class="branding-label">Mateusz Niewiarowski, lekcje gitary</span>
+      </li>
+
+      <!-- PROJECT 2 -->
+      <li class="branding-item"
+          data-project="daj-glos"
+          data-title="DAJ_GŁOS_brand_identity">
+        <img
+          class="branding-folder"
+          src="ui/ui-elements/light-mode/folder-open.png"
+          data-light="ui/ui-elements/light-mode/folder-open.png"
+          data-dark="ui/ui-elements/dark-mode/folder-open.png"
+          data-hover-light="ui/ui-elements/light-mode-inverted/folder-open.png"
+          data-hover-dark="ui/ui-elements/dark-mode-inverted/folder-open.png"
+          alt="">
+        <span class="branding-label">DAJ GŁOS atelier wokalne</span>
+      </li>
+
+      <!--
+        TEMPLATE — copy to add a new project:
+
+      <li class="branding-item"
+          data-project="your-project-id"
+          data-title="Your_Project_Title">
+        <img
+          class="branding-folder"
+          src="ui/ui-elements/light-mode/folder-open.png"
+          data-light="ui/ui-elements/light-mode/folder-open.png"
+          data-dark="ui/ui-elements/dark-mode/folder-open.png"
+          data-hover-light="ui/ui-elements/light-mode-inverted/folder-open.png"
+          data-hover-dark="ui/ui-elements/dark-mode-inverted/folder-open.png"
+          alt="">
+        <span class="branding-label">Project name visible in list</span>
+      </li>
+      -->
+
+    </ul>
+  </main>
+
+
+  <!-- =====================================================
+       BRANDING LIGHTBOX
+  ====================================================== -->
+
+  <div class="branding-lightbox" id="brandingLightbox">
+    <div class="branding-lightbox-overlay" id="brandingOverlay"></div>
+
+    <div class="branding-lightbox-window" id="brandingWindow">
+
+      <!-- Title bar — content swaps between project view and brand book view -->
+      <div class="branding-lightbox-titlebar" id="brandingTitlebar">
+
+        <!-- Back button — only visible in brand book mode -->
+        <button class="branding-back-btn" id="brandingBack" style="display:none;">
+           ◀︎ wróć
+        </button>
+
+        <span class="branding-lightbox-title" id="brandingTitle">project</span>
+
+        <button class="branding-lightbox-close" id="brandingClose">
+          <img
+            src="ui/ui-elements/light-mode/close.png"
+            data-light="ui/ui-elements/light-mode/close.png"
+            data-dark="ui/ui-elements/dark-mode/close.png"
+            data-hover-light="ui/ui-elements/light-mode-inverted/close.png"
+            data-hover-dark="ui/ui-elements/dark-mode-inverted/close.png"
+            class="branding-close-icon"
+            id="brandingCloseIcon">
+        </button>
+      </div>
+
+      <!-- Content area — swapped by JS -->
+      <div class="branding-lightbox-body" id="brandingBody"></div>
+
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       PROJECT CONTENT BLOCKS
+       Hidden — JS clones content into the lightbox.
+
+       TO ADD A NEW PROJECT:
+       Copy one block, set data-project to match the
+       <li>'s data-project, fill in the content.
+  ====================================================== -->
+
+  <!-- PROJECT 1: Mateusz Niewiarowski -->
+<div class="branding-project-content"
+     data-project="mateusz-niewiarowski"
+     style="display:none;">
+  <div class="branding-project-inner">
+
+    <!-- HERO IMAGE -->
+    <div class="branding-hero-wrap">
+      <img
+        src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-3.webp"
+        alt="Mateusz Niewiarowski hero"
+        class="branding-hero-img"
+        loading="eager">
+    </div>
+
+    <!-- HERO DESCRIPTION -->
+    <div class="branding-text-wrap">
+      <p class="branding-description">Fundamentem działalności Mateusza jest indywidualne podejście do każdego ucznia. Nauka gry na gitarze, ukulele czy songwritingu opiera się u niego na budowaniu relacji, poczucia komfortu i autentycznej radości z tworzenia muzyki. Proces nauki dostosowywany jest do osobowości, wieku i muzycznych inspiracji ucznia, dzięki czemu rozwój staje się naturalny i intuicyjny.</p>
+    </div>
+
+    <!-- BRAND BOOK SECTION -->
+    <div class="branding-section">
+
+      <h3 class="branding-subheader">brand book</h3>
+
+      <div class="branding-hero-wrap">
+        <div class="branding-grid-2x2">
+          <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-1.webp"  alt="" loading="lazy">
+          <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-4.webp"  alt="" loading="lazy">
+          <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-8.webp"  alt="" loading="lazy">
+          <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-10.webp" alt="" loading="lazy">
+        </div>
+      </div>
+
+      <div class="branding-hero-wrap">
+        <div class="branding-btn-row">
+          <button
+            class="branding-open-btn"
+            data-brandbook="mateusz-niewiarowski"
+            data-title="Mateusz_Niewiarowski_lekcje_gitary — brand book">
+            otwórz ▶︎
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- VIDEO SECTION PLACEHOLDER -->
+    <div class="branding-section">
+      <div class="branding-video-row">
+        <div class="branding-video-row">
+
+          <video width="270" height="480" controls poster="video/mn-lekcje-gitary/preview/1-mn-soko.webp">
+          <source src="video/mn-lekcje-gitary/1-SOKO.mp4" type="video/mp4">
+          </video>
+
+        <video width="270" height="480" controls poster="video/mn-lekcje-gitary/preview/2-mn-reklama.webp">
+          <source src="video/mn-lekcje-gitary/2-lekcje-gitary-reklama.mp4" type="video/mp4">
+          </video>
+
+        <video width="270" height="480" controls poster="video/mn-lekcje-gitary/preview/3-corduroy-dreams.webp">
+          <source src="video/mn-lekcje-gitary/3-corduroy-dreams.mp4" type="video/mp4">
+          </video>
+
+      </div>
+    </div>
+
+    <!-- MOODBOARD -->
+    <div class="branding-section">
+      <h3 class="branding-subheader">moodboard</h3>
+      <div class="branding-hero-wrap">
+        <img
+          src="branding/mn-lekcje-gitary/moodboard/MN-moodboard-1.webp"
+          alt="Mateusz Niewiarowski moodboard"
+          class="branding-hero-img"
+          loading="lazy">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <!-- PROJECT 2: DAJ GŁOS -->
+  <div class="branding-project-content"
+       data-project="daj-glos"
+       style="display:none;">
+    <div class="branding-project-inner">
+
+      <!-- HERO IMAGE — 60% width, centred -->
+      <div class="branding-hero-wrap">
+        <img
+          src="branding/daj-glos/DAJ-GLOS-hero.webp"
+          alt="DAJ GŁOS hero"
+          class="branding-hero-img"
+          loading="eager">
+      </div>
+
+      <!-- HERO DESCRIPTION — same width as hero image -->
+      <div class="branding-text-wrap">
+        <p class="branding-description">Atelier DAJ GŁOS! to pracownia wokalna prowadzona przez wokalistkę jazzową oraz DJkę Julię Pucis. Praca z głosem traktowana jest tutaj jako praktyka obecności, świadomego oddechu i uwalniania napięć zapisanych w ciele.</p>
+      </div>
+
+      <!-- BRAND BOOK SECTION -->
+      <div class="branding-section">
+
+        <h3 class="branding-subheader">brand book</h3>
+
+        <!-- 2x2 preview grid — same width as hero -->
+        <div class="branding-hero-wrap">
+          <div class="branding-grid-2x2">
+            <img src="branding/daj-glos/brandbook/DAJ-GLOS-1.webp" alt="" loading="lazy">
+            <img src="branding/daj-glos/brandbook/DAJ-GLOS-2.webp" alt="" loading="lazy">
+            <img src="branding/daj-glos/brandbook/DAJ-GLOS-9.webp" alt="" loading="lazy">
+            <img src="branding/daj-glos/brandbook/DAJ-GLOS-11.webp" alt="" loading="lazy">
+          </div>
+        </div>
+
+        <!-- OPEN BRAND BOOK BUTTON -->
+        <div class="branding-hero-wrap">
+          <div class="branding-btn-row">
+            <button
+              class="branding-open-btn"
+              data-brandbook="daj-glos"
+              data-title="DAJ_GŁOS_brand_identity — brand book">
+              otwórz ▶︎
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- VIDEO SECTION PLACEHOLDER -->
+      <div class="branding-section">
+        <!-- 
+          Video section — design TBD.
+          3 vertical placeholder rectangles for now.
+          Replace with <video> elements when ready.
+        -->
+        <div class="branding-video-row">
+          <video width="270" height="480" controls poster="video/daj-glos/preview/1 daj glos video prev.webp">
+          <source src="video/daj-glos/1-DAJ-GLOS-julia.mp4" type="video/mp4">
+          </video>
+         
+          <video width="270" height="480" controls poster="video/daj-glos/preview/2 daj glos video prev.webp">
+          <source src="video/daj-glos/2-DAJGLOSvoiceover.mp4" type="video/mp4">
+          </video>
+
+          <video width="270" height="480" controls poster="video/daj-glos/preview/3 daj glos video prev.webp">
+          <source src="video/daj-glos/3-5-POWODOW-DAJ-GLOS.mp4" type="video/mp4">
+          </video>
+
+        </div>
+      </div>
+
+      <!-- MOODBOARD -->
+      <div class="branding-section">
+          <h3 class="branding-subheader">moodboard</h3>
+        <div class="branding-hero-wrap">
+          <img
+            src="branding/daj-glos/moodboard/daj-glos-moodboard-3.webp"
+            alt="DAJ GŁOS moodboard"
+            class="branding-hero-img"
+            loading="lazy">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       BRAND BOOK CONTENT BLOCKS
+       Hidden — JS clones into the lightbox when
+       "otwórz" is clicked.
+
+       TO ADD A BRAND BOOK FOR A NEW PROJECT:
+       Copy this block, change data-brandbook to match
+       the button's data-brandbook value, and list all
+       page images inside .branding-book-pages.
+  ====================================================== -->
+
+  <div class="branding-book-content"
+       data-brandbook="daj-glos"
+       style="display:none;">
+    <div class="branding-book-pages">
+
+      <!-- 12 pages in numerical order -->
+      <img src="branding/daj-glos/brandbook/DAJ-GLOS-1.webp"  alt="strona 1"  loading="lazy">
+      <img src="branding/daj-glos/brandbook/DAJ-GLOS-2.webp"  alt="strona 2"  loading="lazy">
+      <img src="branding/daj-glos/brandbook/DAJ-GLOS-3.webp"  alt="strona 3"  loading="lazy">
+      <img src="branding/daj-glos/brandbook/DAJ-GLOS-4.webp"  alt="strona 4"  loading="lazy">
+      <img src="branding/daj-glos/brandbook/DAJ-GLOS-5.webp"  alt="strona 5"  loading="lazy">
+      <img src="branding/daj-glos/brandbook/DAJ-GLOS-6.webp"  alt="strona 6"  loading="lazy">
+      <img src="branding/daj-glos/brandbook/DAJ-GLOS-7.webp"  alt="strona 7"  loading="lazy">
+      <img src="branding/daj-glos/brandbook/DAJ-GLOS-8.webp"  alt="strona 8"  loading="lazy">
+      <img src="branding/daj-glos/brandbook/DAJ-GLOS-9.webp"  alt="strona 9"  loading="lazy">
+      <img src="branding/daj-glos/brandbook/DAJ-GLOS-10.webp" alt="strona 10" loading="lazy">
+      <img src="branding/daj-glos/brandbook/DAJ-GLOS-11.webp" alt="strona 11" loading="lazy">
+      <img src="branding/daj-glos/brandbook/DAJ-GLOS-12.webp" alt="strona 12" loading="lazy">
+
+      <!-- wyjdź button at the bottom -->
+      <div class="branding-book-exit-row">
+        <button class="branding-open-btn branding-exit-btn" id="brandingBookExit">
+          wyjdź
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- BRAND BOOK: Mateusz Niewiarowski -->
+<div class="branding-book-content"
+     data-brandbook="mateusz-niewiarowski"
+     style="display:none;">
+  <div class="branding-book-pages">
+
+    <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-1.webp"  alt="strona 1"  loading="lazy">
+    <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-2.webp"  alt="strona 2"  loading="lazy">
+    <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-3.webp"  alt="strona 3"  loading="lazy">
+    <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-4.webp"  alt="strona 4"  loading="lazy">
+    <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-5.webp"  alt="strona 5"  loading="lazy">
+    <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-6.webp"  alt="strona 6"  loading="lazy">
+    <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-7.webp"  alt="strona 7"  loading="lazy">
+    <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-8.webp"  alt="strona 8"  loading="lazy">
+    <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-9.webp"  alt="strona 9"  loading="lazy">
+    <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-10.webp" alt="strona 10" loading="lazy">
+    <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-11.webp" alt="strona 11" loading="lazy">
+    <img src="branding/mn-lekcje-gitary/brandbook/MN-brandbook-12.webp" alt="strona 12" loading="lazy">
+
+    <div class="branding-book-exit-row">
+      <button class="branding-open-btn branding-exit-btn" id="brandingBookExit">
+        wyjdź
+      </button>
+    </div>
+
+  </div>
+</div>
+
+  <footer class="site-footer">
+    <span>olga.klepczarek@gmail.com</span>
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olga Klepczarek — Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ANTI-FLASH SCRIPT: runs before the page paints -->
+  <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark-mode");
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- =====================================================
+     COOKIE CONSENT BANNER
+     Paste this block at the top of <body> on every page.
+     JS and CSS handle all behaviour — nothing else to change here.
+====================================================== -->
+<div class="cookie-banner" id="cookieBanner">
+
+  <!-- ── INITIAL STATE ── -->
+  <div class="cookie-initial" id="cookieInitial">
+    <p class="cookie-text">
+      Ta strona używa wyłącznie ciasteczek niezbędnych do działania jej funkcji.
+      Możesz je odrzucić, ale wtedy niektóre funkcje nie będą dostępne.
+      <a href="polityka-prywatnosci.html" class="cookie-link">Dowiedz się więcej.</a>
+    </p>
+    <div class="cookie-btn-row">
+      <button class="cookie-btn" id="cookieAccept">akceptuję</button>
+      <button class="cookie-btn" id="cookieDecline">odrzucam</button>
+    </div>
+  </div>
+
+  <!-- ── DECLINED STATE ── -->
+  <!-- Hidden by default, shown after "odrzucam" is clicked -->
+  <div class="cookie-declined" id="cookieDeclined" style="display:none;">
+    <button class="cookie-close" id="cookieClose">x</button>
+    <p class="cookie-text">Niektóre funkcje strony są niedostępne.</p>
+    <button class="cookie-btn cookie-btn--full" id="cookieReopen">
+      &#60; Zmień ustawienia cookies
+    </button>
+  </div>
+
+</div>
+
+  <div class="top-overlay"></div>
+
+  <!-- THEME SWITCH -->
+  <div class="top-bar">
+    <div class="theme-switcher">
+      <img
+        id="lightModeBtn"
+        class="theme-icon"
+        src="icons/light/sun.png"
+        data-light="icons/light/sun.png"
+        data-dark="icons/dark/sun.png">
+      <img
+        id="darkModeBtn"
+        class="theme-icon"
+        src="icons/light/moon.png"
+        data-light="icons/light/moon.png"
+        data-dark="icons/dark/moon.png">
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+   <h1 class="animated-text">montażystka, realizatorka video, artystka wizualna</h1>
+    <h2 class="animated-text">Cześć, jestem Olga</h2>
+  </header>
+
+  <!-- ICONS -->
+  <main class="desktop-grid">
+    <div class="desktop-inner">
+
+      <!-- VIDEO -->
+      <div class="desktop-item">
+        <a href="video.html">
+          <img
+            src="icons/light/film.png"
+            data-light="icons/light/film.png"
+            data-dark="icons/dark/film.png"
+            data-hover-light="icons/white/film.png"
+            data-hover-dark="icons/light/film.png"
+            class="desktop-icon">
+          <p>video</p>
+        </a>
+      </div>
+
+      <!-- ZDJĘCIA -->
+      <div class="desktop-item">
+        <a href="zdjecia.html">
+          <img
+            src="icons/light/camera.png"
+            data-light="icons/light/camera.png"
+            data-dark="icons/dark/camera.png"
+            data-hover-light="icons/white/camera.png"
+            data-hover-dark="icons/light/camera.png"
+            class="desktop-icon">
+          <p>zdjęcia</p>
+        </a>
+      </div>
+
+      <!-- BRANDING -->
+      <div class="desktop-item">
+        <a href="branding.html">
+          <img
+            src="icons/light/pen.png"
+            data-light="icons/light/pen.png"
+            data-dark="icons/dark/pen.png"
+            data-hover-light="icons/white/pen.png"
+            data-hover-dark="icons/light/pen.png"
+            class="desktop-icon">
+          <p>branding</p>
+        </a>
+      </div>
+
+      <!-- KONTAKT -->
+      <div class="desktop-item">
+        <a href="kontakt.html">
+          <img
+            src="icons/light/envelope.png"
+            data-light="icons/light/envelope.png"
+            data-dark="icons/dark/envelope.png"
+            data-hover-light="icons/white/envelope.png"
+            data-hover-dark="icons/light/envelope.png"
+            class="desktop-icon">
+          <p>kontakt</p>
+        </a>
+      </div>
+
+      <!-- O MNIE -->
+      <div class="desktop-item">
+        <a href="about.html">
+          <img
+            src="icons/light/person.png"
+            data-light="icons/light/person.png"
+            data-dark="icons/dark/person.png"
+            data-hover-light="icons/white/person.png"
+            data-hover-dark="icons/light/person.png"
+            class="desktop-icon">
+          <p>o mnie</p>
+        </a>
+      </div>
+
+    </div>
+
+
+  </main>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polityka Prywatności</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+  /* ── Load Overpass Mono from local fonts folder ──────────────────
+     @font-face registers the font with the browser.
+     'font-family' is the name you'll use to apply it below.
+     'src' is the path to the file, relative to this HTML file.    ── */
+  @font-face {
+    font-family: 'Overpass Mono';
+    src: url('fonts/OverpassMono-VariableFont_wght.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    /* display:swap keeps text visible while the font loads */
+    font-display: swap;
+  }
+  /* ── Apply to the whole page ─────────────────────────────────────
+     The name here must exactly match font-family above.           ── */
+  body {
+    font-family: 'Overpass Mono', monospace;
+  }
+</style>
+
+  <!-- ANTI-FLASH SCRIPT: runs before the page paints -->
+  <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark-mode");
+    }
+  </script>
+
+</head>
+<body>
+  
+
+  <div class="top-overlay"></div>
+
+  <!-- THEME SWITCH -->
+  <div class="top-bar">
+    <div class="theme-switcher">
+      <img
+        id="lightModeBtn"
+        class="theme-icon"
+        src="icons/light/sun.png"
+        data-light="icons/light/sun.png"
+        data-dark="icons/dark/sun.png">
+      <img
+        id="darkModeBtn"
+        class="theme-icon"
+        src="icons/light/moon.png"
+        data-light="icons/light/moon.png"
+        data-dark="icons/dark/moon.png">
+    </div>
+  </div>
+
+      <!-- PAGE HEADER -->
+    <div class="page-header">
+        <a href="index.html" class="page-home-link">home page</a>
+    </div>
+
+  <h3>Polityka Prywatności</h3>
+  <p>Data ostatniej aktualizacji: 26 maja 2026 r.</p>
+  <p>Dbam o Twoją prywatność. Poniżej znajdziesz wszystkie najważniejsze informacje o tym, jak przetwarzam dane osobowe oraz jakich plików cookies używa moja strona.</p>
+<ol>
+
+    <li><strong>Kto jest administratorem danych?</strong></li>
+<p>Administratorem Twoich danych osobowych jestem ja: Olga Klepczarek, kontakt: olga.klepczarek@gmail.com</p>
+
+<li><strong>Podstawa prawna:</strong> art. 6 ust. 1 lit. RODO - Twój dobrowolny kontakt (uzasadniony interes administratora).</li>
+
+<li><strong>Formularz kontaktowy</strong></li>
+<p>► Na stronie znajduje się formularz kontaktowy. Aby wysłać wiadomość, musisz podać swoje imię (lub pseudonim) oraz adres e-mail.</p>
+<p>► Cel: Dane te są przetwarzane wyłącznie w celu udzielenia odpowiedzi na Twoją wiadomość.</p>
+
+<p>► Okres przechowywania: Wiadomości przechowuję przez czas niezbędny do prowadzenia korespondencji lub do momentu, w którym poprosisz o ich usunięcie.</p>
+
+<li><strong>Pliki Cookies (Ciasteczka) i podmioty trzecie</strong></li>
+
+<p>Moja strona nie korzysta z żadnych systemów analitycznych (tj. Google Analytics, Pixel) ani marketingowych. Używam wyłącznie ciasteczek niezbędnych do działania funkcji strony: </p>
+
+<p><strong>► Hosting strony (Cloudflare Pages):</strong></p>
+
+<p>Dostawca hostingu automatycznie przetwarza podstawowe dane techniczne (takie jak adres IP czy logi serwera) w celu zapewnienia stabilności, szybkości ładowania witryny oraz ochrony przed cyberatakami. Usługa ta nie służy do śledzenia użytkowników. </p>
+
+<p><strong>► Obsługa formularza (Web3Forms):</strong></p>
+
+<p>Dane wpisane w formularzu kontaktowym (imię, adres e-mail, treść wiadomości) oraz adres IP nadawcy są przesyłane w sposób zaszyfrowany do serwisu Web3Forms. Dane te są przetwarzane wyłącznie w celu przekazania wiadomości na moją skrzynkę e-mail oraz weryfikacji, czy wiadomość nie jest spamem.</p>
+
+<p><strong>► Ochrona formularza:</strong></p>
+
+<p>Formularz korzysta z zabezpieczeń przed botami. Mechanizm ten może badać zachowanie na stronie, aby odróżnić człowieka od spamu.</p>
+
+<p><strong>► Vimeo (Odtwarzacz wideo):</strong></p>
+
+<p>W moim portfolio osadzone są filmy z platformy Vimeo. Po wyrażeniu przez Ciebie zgody w banerze cookie, Vimeo może zapisywać na Twoim urządzeniu pliki cookies niezbędne do odtwarzania wideo, zapamiętywania ustawień głośności oraz zbierania anonimowych statystyk odtworzeń.</p>
+
+<p><strong>► Pamięć decyzji:</strong></p>
+
+<p>Przeglądarka zapisuje mały plik lokalny (localStorage), aby strona pamiętała, czy zaakceptował_ś, czy odrzucił_ś baner cookie podczas poprzedniej wizyty.</p>
+
+<li><strong>Twoje prawa</strong></li>
+
+<p>Masz prawo do wglądu w swoje dane, ich poprawiania, ograniczenia przetwarzania lub całkowitego usunięcia. W tym celu wystarczy do mnie napisać na wskazany wyżej adres e-mail.</p>
+
+</ol>
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>

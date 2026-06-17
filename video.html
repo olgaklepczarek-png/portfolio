@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video — Olga Klepczarek</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ANTI-FLASH SCRIPT: runs before the page paints -->
+  <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark-mode");
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- =====================================================
+     COOKIE CONSENT BANNER
+     Paste this block at the top of <body> on every page.
+     JS and CSS handle all behaviour — nothing else to change here.
+====================================================== -->
+<div class="cookie-banner" id="cookieBanner">
+
+  <!-- ── INITIAL STATE ── -->
+  <div class="cookie-initial" id="cookieInitial">
+    <p class="cookie-text">
+      Ta strona używa wyłącznie ciasteczek niezbędnych do działania jej funkcji.
+      Możesz je odrzucić, ale wtedy niektóre funkcje nie będą dostępne.
+      <a href="polityka-prywatnosci.html" class="cookie-link">Dowiedz się więcej.</a>
+    </p>
+    <div class="cookie-btn-row">
+      <button class="cookie-btn" id="cookieAccept">akceptuję</button>
+      <button class="cookie-btn" id="cookieDecline">odrzucam</button>
+    </div>
+  </div>
+
+  <!-- ── DECLINED STATE ── -->
+  <!-- Hidden by default, shown after "odrzucam" is clicked -->
+  <div class="cookie-declined" id="cookieDeclined" style="display:none;">
+    <button class="cookie-close" id="cookieClose">x</button>
+    <p class="cookie-text">Niektóre funkcje strony są niedostępne.</p>
+    <button class="cookie-btn cookie-btn--full" id="cookieReopen">
+      &#60; Zmień ustawienia cookies
+    </button>
+  </div>
+
+</div>
+
+  <div class="top-overlay"></div>
+
+  <!-- THEME SWITCH -->
+  <div class="top-bar">
+    <div class="theme-switcher">
+      <img
+        id="lightModeBtn"
+        class="theme-icon"
+        src="icons/light/sun.png"
+        data-light="icons/light/sun.png"
+        data-dark="icons/dark/sun.png">
+      <img
+        id="darkModeBtn"
+        class="theme-icon"
+        src="icons/light/moon.png"
+        data-light="icons/light/moon.png"
+        data-dark="icons/dark/moon.png">
+    </div>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <a href="index.html" class="page-home-link">home page</a>
+    <h1 class="page-title">video</h1>
+  </div>
+
+
+
+  <section class="video-section">
+  <div class="video-list">
+
+    <!-- =====================================================
+         HOW VIDEOS WORK ON THIS PAGE
+
+         Every <article> needs two data attributes:
+           data-vimeo-id  = the numeric Vimeo video ID
+           data-vimeo-url = the full Vimeo page URL (for the placeholder link)
+
+         JS reads these on page load and does one of three things
+         depending on the user's cookie consent (stored in localStorage
+         under the key "cookieConsent"):
+
+           "accepted" → injects a real <iframe> into .video-player
+           "declined" → leaves .video-placeholder-link visible
+                        (clicking it opens Vimeo in a new tab)
+           null       → same as "declined" for non-featured videos;
+                        for the featured video, shows an inline consent prompt
+
+         FEATURED VIDEO (showreel):
+           Has three gate states inside .video-frame-wrapper:
+             .video-gate--pending   shown when consent = null
+             .video-gate--declined  shown when consent = "declined"
+             .video-gate--accepted  shown when consent = "accepted"
+             .video-gate--soon      shown when data-vimeo-id = "XXXXXXX"
+                                    (showreel not ready yet — overrides all states)
+
+         NON-FEATURED VIDEOS:
+           Two elements sit inside each <article>:
+             .video-placeholder-link  visible by default (Vimeo icon, links out)
+             .video-player            hidden by default, shown after consent
+
+         TO ADD A NEW VIDEO: see the template at the bottom of this section.
+    ====================================================== -->
+
+    <!-- ===== VIDEO 1: SHOWREEL (featured — full width + frame) ===== -->
+    <!--
+      When your showreel is ready:
+        1. Replace data-vimeo-id="XXXXXXX" with the real numeric Vimeo ID
+        2. The .video-gate--soon "coming soon" placeholder hides automatically
+        3. The consent gate takes over — no other changes needed
+    -->
+    <article class="video-item video-item--featured" data-vimeo-id="XXXXXXX">
+
+      <div class="video-frame-wrapper">
+
+        <!-- STATE A: consent = null (first visit or banner not yet answered)
+             Inline mini-banner — same accept/decline choice as the global banner -->
+        <div class="video-gate video-gate--pending" style="display:none;">
+          <p class="video-gate-text">
+            Ta strona używa plików cookies zewnętrznych dostawców (Vimeo)
+            do wyświetlania wideo. Możesz odrzucić ciasteczka, jednak wideo
+            nie zostanie wtedy załadowane.
+            <a href="polityka-prywatnosci.html" class="cookie-link">Dowiedz się więcej.</a>
+          </p>
+          <div class="cookie-btn-row">
+            <button class="cookie-btn video-gate-accept">akceptuję</button>
+            <button class="cookie-btn video-gate-decline">odrzucam</button>
+          </div>
+        </div>
+
+        <!-- STATE B: consent = "declined"
+             Offers a direct Vimeo link and a way to change the decision -->
+        <div class="video-gate video-gate--declined" style="display:none;">
+          <p class="video-gate-text">
+            Możesz obejrzeć to video w serwisie
+            <a href="https://vimeo.com/klepczarekolga" target="_blank" rel="noopener" class="cookie-link">Vimeo</a>
+            lub tutaj, jeśli zaakceptujesz cookies.
+          </p>
+          <button class="cookie-btn video-gate-reopen">&#60; chcę obejrzeć video</button>
+        </div>
+
+        <!-- STATE C: consent = "accepted"
+             Empty on load — JS injects the <iframe> here after consent is confirmed.
+             Never put a src here directly: Vimeo would load before consent. -->
+        <div class="video-embed-ratio video-gate--accepted" style="display:none;">
+        </div>
+
+        <!-- FALLBACK: showreel not ready yet
+             Visible only when data-vimeo-id is still "XXXXXXX".
+             JS hides this automatically once a real ID is set. -->
+        <div class="video-embed-placeholder video-gate--soon">
+          <span>showreel — coming soon</span>
+        </div>
+
+      </div>
+
+      <div class="video-credits">
+        <p>zdjęcia:</p>
+        <p>montaż: Olga Klepczarek</p>
+        <p>muzyka: Mateusz Niewiarowski</p>
+      </div>
+
+    </article>
+
+    <!-- ===== VIDEO 2: video left, credits right ===== -->
+    <article class="video-item video-item--left"
+             data-vimeo-id="1117082117"
+             data-vimeo-url="https://vimeo.com/1117082117">
+
+      <!-- Placeholder: always visible until consent is given.
+           Clicking opens the video directly on Vimeo in a new tab. -->
+      <a class="video-placeholder-link" href="https://vimeo.com/1117082117" target="_blank" rel="noopener">
+        <div class="video-embed-ratio video-placeholder">
+          <img src="icons/light/vimeo.png"
+               data-light="icons/light/vimeo.png"
+               data-dark="icons/dark/vimeo.png"
+               class="video-placeholder-icon"
+               alt="Obejrzyj na Vimeo">
+        </div>
+      </a>
+
+      <!-- Player: hidden until consent. JS injects the <iframe> here. -->
+      <div class="video-embed-ratio video-player" style="display:none;">
+      </div>
+
+      <div class="video-credits">
+        <p class="video-title">podsumowanie festiwalu otwartych pracowni WIDOKI 2024</p>
+        <p>montaż — Olga Klepczarek</p>
+        <p>zdjęcia — Dominik Redmer i Bartosz Abramczuk</p>
+        <p>muzyka — Jacek Sienkiewicz</p>
+      </div>
+
+    </article>
+
+    <!-- ===== VIDEO 3: credits left, video right ===== -->
+    <article class="video-item video-item--right"
+             data-vimeo-id="1188074396"
+             data-vimeo-url="https://vimeo.com/1188074396">
+
+      <div class="video-credits">
+        <p class="video-title">Crippled Symmetry</p>
+        <p>Zapowiedź albumu Emilii Karoliny Sitarz, Ewy Liebchen i Magdaleny Kordylasińskiej-Pękali „Morton Feldman: Crippled Symmetry"</p>
+      </div>
+
+      <a class="video-placeholder-link" href="https://vimeo.com/1188074396" target="_blank" rel="noopener">
+        <div class="video-embed-ratio video-placeholder">
+          <img src="icons/light/vimeo.png"
+               data-light="icons/light/vimeo.png"
+               data-dark="icons/dark/vimeo.png"
+               class="video-placeholder-icon"
+               alt="Obejrzyj na Vimeo">
+        </div>
+      </a>
+
+      <div class="video-embed-ratio video-player" style="display:none;">
+      </div>
+
+    </article>
+
+    <!-- ===== VIDEO 4: video left, credits right ===== -->
+    <article class="video-item video-item--left"
+             data-vimeo-id="1192836002"
+             data-vimeo-url="https://vimeo.com/1192836002">
+
+      <a class="video-placeholder-link" href="https://vimeo.com/1192836002" target="_blank" rel="noopener">
+        <div class="video-embed-ratio video-placeholder">
+          <img src="icons/light/vimeo.png"
+               data-light="icons/light/vimeo.png"
+               data-dark="icons/dark/vimeo.png"
+               class="video-placeholder-icon"
+               alt="Obejrzyj na Vimeo">
+        </div>
+      </a>
+
+      <div class="video-embed-ratio video-player" style="display:none;">
+      </div>
+
+      <div class="video-credits">
+        <p class="video-title">relacja z LUNCHOWEGO KONCERTU WŁĄCZAJĄCEGO</p>
+        <p>Royal String Quartet na Lunchowych Koncertach Włączających w ramach projektu Nanodźwięki</p>
+        <p>Arteneum, 2025</p>
+      </div>
+
+    </article>
+
+
+    <!-- =====================================================
+         TEMPLATE — copy this block to add a new video
+         =====================================================
+
+         1. Choose layout direction:
+              video-item--left   = video on left,  credits on right
+              video-item--right  = credits on left, video on right
+            Alternate them to keep the page visually balanced.
+
+         2. Fill in the three places marked YOUR_VIMEO_ID
+            with the numeric ID from the Vimeo URL, e.g.:
+              https://vimeo.com/1117082117  →  1117082117
+
+         3. Fill in credits inside .video-credits.
+            Add as many <p> lines as you need — no fixed structure.
+
+         4. That's it. The consent gate is handled automatically by JS.
+
+    <article class="video-item video-item--left"
+             data-vimeo-id="YOUR_VIMEO_ID"
+             data-vimeo-url="https://vimeo.com/YOUR_VIMEO_ID">
+
+      <a class="video-placeholder-link" href="https://vimeo.com/YOUR_VIMEO_ID" target="_blank" rel="noopener">
+        <div class="video-embed-ratio video-placeholder">
+          <img src="icons/light/vimeo.png"
+               data-light="icons/light/vimeo.png"
+               data-dark="icons/dark/vimeo.png"
+               class="video-placeholder-icon"
+               alt="Obejrzyj na Vimeo">
+        </div>
+      </a>
+
+      <div class="video-embed-ratio video-player" style="display:none;">
+      </div>
+
+      <div class="video-credits">
+        <p class="video-title">Tytuł projektu</p>
+        <p>opis / credits</p>
+      </div>
+
+    </article>
+    ====================================================== -->
+
+  </div>
+</section>
+
+  <footer class="site-footer">
+    <span>olga.klepczarek@gmail.com</span>
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>

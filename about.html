@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O mnie — Olga Klepczarek</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ANTI-FLASH SCRIPT: runs before the page paints -->
+  <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark-mode");
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- =====================================================
+     COOKIE CONSENT BANNER
+     Paste this block at the top of <body> on every page.
+     JS and CSS handle all behaviour — nothing else to change here.
+====================================================== -->
+<div class="cookie-banner" id="cookieBanner">
+
+  <!-- ── INITIAL STATE ── -->
+  <div class="cookie-initial" id="cookieInitial">
+    <p class="cookie-text">
+      Ta strona używa wyłącznie ciasteczek niezbędnych do działania jej funkcji.
+      Możesz je odrzucić, ale wtedy niektóre funkcje nie będą dostępne.
+      <a href="polityka-prywatnosci.html" class="cookie-link">Dowiedz się więcej.</a>
+    </p>
+    <div class="cookie-btn-row">
+      <button class="cookie-btn" id="cookieAccept">akceptuję</button>
+      <button class="cookie-btn" id="cookieDecline">odrzucam</button>
+    </div>
+  </div>
+
+  <!-- ── DECLINED STATE ── -->
+  <!-- Hidden by default, shown after "odrzucam" is clicked -->
+  <div class="cookie-declined" id="cookieDeclined" style="display:none;">
+    <button class="cookie-close" id="cookieClose">x</button>
+    <p class="cookie-text">Niektóre funkcje strony są niedostępne.</p>
+    <button class="cookie-btn cookie-btn--full" id="cookieReopen">
+      &#60; Zmień ustawienia cookies
+    </button>
+  </div>
+
+</div>
+
+  <div class="top-overlay"></div>
+
+  <!-- THEME SWITCH -->
+  <div class="top-bar">
+    <div class="theme-switcher">
+      <img
+        id="lightModeBtn"
+        class="theme-icon"
+        src="icons/light/sun.png"
+        data-light="icons/light/sun.png"
+        data-dark="icons/dark/sun.png">
+      <img
+        id="darkModeBtn"
+        class="theme-icon"
+        src="icons/light/moon.png"
+        data-light="icons/light/moon.png"
+        data-dark="icons/dark/moon.png">
+    </div>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <a href="index.html" class="page-home-link">home page</a>
+    <h1 class="page-title">o mnie</h1>
+  </div>
+
+
+  <!-- =====================================================
+       O MNIE PAGE LAYOUT
+
+       Two columns:
+       - .omnie-left  (1/3) — navigation items
+       - .omnie-right (2/3) — persistent content panel
+
+       Clicking either nav item swaps the panel content.
+       The panel is always visible
+  ====================================================== -->
+
+  <div class="omnie-layout">
+
+    <!-- ===== LEFT COLUMN ===== -->
+    <div class="omnie-left">
+
+      <!-- DOCUMENT ICON — "moja oferta" -->
+      <div class="omnie-nav-item omnie-nav-item--active" data-panel="oferta">
+
+        <img
+          class="omnie-nav-icon"
+          src="ui/ui-elements/light-mode/document.png"
+          data-light="ui/ui-elements/light-mode/document.png"
+          data-dark="ui/ui-elements/dark-mode/document.png"
+          data-hover-light="ui/ui-elements/light-mode-inverted/document.png"
+          data-hover-dark="ui/ui-elements/dark-mode-inverted/document.png"
+          alt="">
+
+        <span class="omnie-nav-label">moja oferta</span>
+
+      </div>
+
+
+      <!-- MOBILE-ONLY: simple person icon nav item replacing the full illustration.
+           Hidden on desktop via CSS. Uses the same data-panel so JS picks it up. -->
+      <div class="omnie-nav-item omnie-nav-item--mobile-person" data-panel="poznajmy">
+
+        <img
+          class="omnie-nav-icon"
+          src="ui/ui-elements/light-mode/person.png"
+          data-light="ui/ui-elements/light-mode/person.png"
+          data-dark="ui/ui-elements/dark-mode/person.png"
+          data-hover-light="ui/ui-elements/light-mode-inverted/person.png"
+          data-hover-dark="ui/ui-elements/dark-mode-inverted/person.png"
+          alt="">
+
+        <span class="omnie-nav-label">poznajmy się</span>
+
+      </div>
+
+      <!-- PERSON + SPEECH BUBBLE — "poznajmy się" -->
+      <!--
+        The whole .omnie-character wrapper is clickable —
+        both the person and the bubble trigger the "poznajmy się" panel.
+
+        SPRITE SHEET NOTE:
+        When your sprite sheet animation is ready, replace the
+        <img class="omnie-person"> tag below with your animated
+        element. Everything else stays the same.
+      -->
+      <div class="omnie-character" data-panel="poznajmy">
+
+        <!-- Speech bubble — inverts on active, sits above person -->
+        <div class="omnie-bubble-wrap">
+          <img
+            class="omnie-bubble"
+            src="ui/ui-elements/light-mode/dymek.png"
+            data-light="ui/ui-elements/light-mode/dymek.png"
+            data-dark="ui/ui-elements/dark-mode/dymek.png"
+            data-hover-light="ui/ui-elements/light-mode-inverted/dymek.png"
+            data-hover-dark="ui/ui-elements/dark-mode-inverted/dymek.png"
+            alt="">
+          <span class="omnie-bubble-text">poznajmy się</span>
+        </div>
+
+        <!-- Person image — never changes on hover/click -->
+        <!-- SWAP THIS IMG for sprite sheet animation when ready -->
+        <img
+          class="omnie-person"
+          src="icons/light/full-person.png"
+          data-light="icons/light/full-person.png"
+          data-dark="icons/dark/full-person.png"
+          alt="">
+
+          <span class="omnie-prompt">&gt; select character</span>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===== RIGHT COLUMN — PERSISTENT CONTENT PANEL ===== -->
+    <div class="omnie-right">
+      <div class="omnie-panel">
+
+        <!-- Title bar -->
+        <div class="omnie-panel-titlebar">
+          <span class="omnie-panel-title" id="omniePanelTitle">oferta</span>
+          <!-- Decorative square — not functional -->
+          <div class="omnie-panel-square"></div>
+        </div>
+
+        <!-- Panel body — content swaps here -->
+        <div class="omnie-panel-body" id="omniePanelBody">
+          <!-- default content injected by JS on load -->
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       PANEL CONTENT BLOCKS
+       Hidden — JS copies content into the panel on click.
+
+       TO EDIT CONTENT: just edit the text inside these blocks.
+       No JS changes needed.
+  ====================================================== -->
+
+  <!-- OFERTA content -->
+  <div class="omnie-content-block" data-panel="oferta" style="display:none;">
+    <div class="omnie-content-inner">
+
+      <h2 class="omnie-panel-heading">Nad czym możemy razem pracować?</h2>
+
+      <ul class="omnie-offer-list">
+        <li>realizacja video z wydarzeń i projektów</li>
+        <li>filmy promocyjne i edukacyjne</li>
+        <li>montaż podcastów i YouTube</li>
+        <li>short form video na social media</li>
+        <li>identyfikacja i komunikacja wizualna</li>
+      </ul>
+
+      <a href="mailto:olga.klepczarek@gmail.com" class="omnie-contact-btn">
+        napisz do mnie ▶︎
+      </a>
+
+    </div>
+  </div>
+
+
+  <!-- POZNAJMY SIĘ content -->
+  <div class="omnie-content-block" data-panel="poznajmy" style="display:none;">
+    <div class="omnie-content-inner">
+
+      <p class="omnie-bio-text">Cześć, nazywam się Olga. Jestem absolwentką montażu filmowego w Warszawskiej Szkole Filmowej.</p>
+
+      <p class="omnie-bio-text">Zajmuję się realizacją relacji video z wydarzeń i projektów, tworzeniem filmów promocyjnych i edukacyjnych oraz montażem różnych form audiowizualnych. Tworzę też krótkie video na social media oraz zajmuję się identyfikacją wizualną. Chętnie pomogę Ci w budowaniu spójnego języka wizualnego dla Ciebie, Twojej marki lub projektu. W materiałach video staram się wiernie oddać atmosferę wydarzenia na żywo.</p>
+
+      <a href="mailto:olga.klepczarek@gmail.com" class="omnie-contact-btn">
+        napisz do mnie ▶︎
+      </a>
+
+    </div>
+  </div>
+
+
+  <footer class="site-footer">
+    <span>olga.klepczarek@gmail.com</span>
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>
